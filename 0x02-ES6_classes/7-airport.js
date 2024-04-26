@@ -10,8 +10,8 @@ export default class Airport {
   }
 
   set code(newCode) {
-    if (typeof newCode !== 'string') {
-      throw new TypeError('Name must be a string');
+    if (typeof newCode !== "string") {
+      throw new TypeError("Name must be a string");
     }
     this._code = newCode;
   }
@@ -21,13 +21,13 @@ export default class Airport {
   }
 
   set name(newName) {
-    if (typeof newName !== 'string') {
-      throw new TypeError('Name must be a string');
+    if (typeof newName !== "string") {
+      throw new TypeError("Name must be a string");
     }
     this._name = newName;
   }
 
-  toString() {
+  get [Symbol.toStringTag]() {
     return this._code;
   }
 }
