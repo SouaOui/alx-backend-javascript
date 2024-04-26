@@ -6,7 +6,6 @@ export default class Car {
   }
 
   cloneCar() {
-    // Using spread syntax to create a new object with copied properties
     return new this.constructor(...Object.values(this));
   }
 }
