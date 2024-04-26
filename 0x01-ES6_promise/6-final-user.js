@@ -6,19 +6,39 @@ export default async function handleProfileSignup(
   lastName,
   fileName,
 ) {
+  const signUpUserPromise = signUpUser(firstName, lastName);
+  const uploadPhotoPromise = uploadPhoto(fileName);
+
+  const [userData, photoData] = await Promise.allSettled([
+    signUpUserPromise,
+    uploadPhotoPromise,
+  ]);
+
   const results = [];
-  try {
-    const userData = await signUpUser(firstName, lastName);
+
+  if (userData.status === 'fulfilled') {
     results.push({
       status: 'fulfilled',
-      value: userData,
+      value: userData.value,
     });
-    await uploadPhoto(fileName);
-  } catch (error) {
+  } else {
     results.push({
       status: 'rejected',
-      value: error.message,
+      value: userData.reason.message,
     });
   }
+
+  if (photoData.status === 'fulfilled') {
+    results.push({
+      status: 'fulfilled',
+      value: 'Photo uploaded successfully',
+    });
+  } else {
+    results.push({
+      status: 'rejected',
+      value: photoData.reason.message,
+    });
+  }
+
   return results;
 }
