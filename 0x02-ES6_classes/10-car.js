@@ -1,6 +1,6 @@
-const brandSymbol = Symbol("brand");
-const motorSymbol = Symbol("motor");
-const colorSymbol = Symbol("color");
+const brandSymbol = Symbol('brand');
+const motorSymbol = Symbol('motor');
+const colorSymbol = Symbol('color');
 
 export default class Car {
   constructor(brand, motor, color) {
