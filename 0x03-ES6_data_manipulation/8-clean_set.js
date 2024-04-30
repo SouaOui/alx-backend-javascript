@@ -1,10 +1,24 @@
 export default function cleanSet(set, startString) {
   const resultString = [];
+  if (
+    !set ||
+    !startString ||
+    !(set instanceof Set) ||
+    typeof startString !== "string"
+  ) {
+    return "";
+  }
   set.forEach((element) => {
-    if (startString !== '' && element.startsWith(startString)) {
-      resultString.push(element.substring(startString.length));
+    if (
+      typeof element === "string" &&
+      startString !== "" &&
+      element.startsWith(startString)
+    ) {
+      const value = element.substring(startString.length);
+      if (value && value !== element) {
+        resultString.push(value);
+      }
     }
   });
-  const concatString = resultString.join('-');
-  return concatString;
+  return resultString.join("-");
 }
