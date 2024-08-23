@@ -2,7 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 
 function countStudents(filepath) {
-  fs.access(filepath, fs.constants.F_OK, (err) => {
+  fs.accessSync(filepath, fs.constants.F_OK, (err) => {
     if (err) {
       throw new Error("Cannot load the database");
     }
@@ -28,6 +28,9 @@ function countStudents(filepath) {
       totalStudents++;
     })
     .on("end", () => {
+      if (totalStudents.length === 0) {
+        throw new Error("Cannot load the database");
+      }
       console.log(`Number of students: ${totalStudents}`);
 
       for (const field in studentsByField) {
