@@ -3,7 +3,9 @@ const calcul = require("./0-calcul.js");
 
 const testCases = [
   { a: 12, b: 12, expected: 24 },
+  { a: 1.0, b: 2.0, expected: 3 },
   { a: 0.4, b: 0, expected: 0 },
+  { a: 2.6, b: 2.0, expected: 5 },
   { a: 0, b: 12.4, expected: 12 },
   { a: 12.4, b: 12.6, expected: 25 },
   { a: -1.5, b: 1.5, expected: 1 },
