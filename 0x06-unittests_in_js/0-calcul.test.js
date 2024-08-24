@@ -1,14 +1,14 @@
-const assert = require('assert');
-const calcul = require('../0-calcul.js');
+const assert = require("assert");
+const calcul = require("./0-calcul.js");
 
 const testCases = [
   { a: 12, b: 12, expected: 24 },
   { a: 12.4, b: 12.6, expected: 25 },
   { a: -1.5, b: 1.5, expected: 1 },
-  { a: 0, b: 0, expected: 0 }
+  { a: 0, b: 0, expected: 0 },
 ];
 
-describe('Test for calculateNumber function', function () {
+describe("Test for calculateNumber function", function () {
   testCases.forEach(({ a, b, expected }) => {
     it(`should return ${expected} for inputs ${a} and ${b}`, function () {
       const result = calcul.calculateNumber(a, b);
