@@ -1,34 +1,36 @@
-const assert = require("assert");
-const calcul = require("./0-calcul.js");
+import { expect } from 'chai';
+import calculateNumber from './0-calcul.js';
 
-const testCases = [
-  { a: 12, b: 12, expected: 24 },
-  { a: 1.0, b: 2.0, expected: 3 },
-  { a: 0.4, b: 0, expected: 0 },
-  { a: 2.6, b: 2.0, expected: 5 },
-  { a: 0, b: 12.4, expected: 12 },
-  { a: 12.4, b: 12.6, expected: 25 },
-  { a: -1.5, b: 1.5, expected: 1 },
-];
+describe('calculateNumber', () => {
+  it('should add two floating point whole numbers correctly', () => {
+    expect(calculateNumber(1.0, 2.0)).to.equal(3);
+  });
 
-describe("Test for calculateNumber function", function () {
-  testCases.forEach(({ a, b, expected }) => {
-    it(`should return ${expected} for inputs ${a} and ${b}`, function () {
-      const result = calcul.calculateNumber(a, b);
-      assert.strictEqual(result, expected);
-    });
+  it('should round down the second floating point fractional number', () => {
+    expect(calculateNumber(1.0, 2.4)).to.equal(3);
+  });
+
+  it('should round down both floating point fractional numbers', () => {
+    expect(calculateNumber(1.4, 2.4)).to.equal(3);
+  });
+
+  it('should round down the first floating point fractional number', () => {
+    expect(calculateNumber(1.4, 2.0)).to.equal(3);
+  });
+
+  it('should round up the second floating point fractional number', () => {
+    expect(calculateNumber(1.0, 2.5)).to.equal(4);
+  });
+
+  it('should round up both floating point fractional numbers', () => {
+    expect(calculateNumber(2.6, 2.5)).to.equal(6);
+  });
+
+  it('should round up the first floating point fractional number', () => {
+    expect(calculateNumber(2.6, 2.0)).to.equal(5);
+  });
+
+  it('should round down both floating point fractional numbers with trailing 9s', () => {
+    expect(calculateNumber(2.499999, 3.499999)).to.equal(5);
   });
 });
-
-// const assert = require("assert");
-
-// const calcul = require("../0-calcul.js");
-
-// describe("test for calculate number function", function () {
-//   it("should return the sum of two numbers after rounding them", function () {
-//     const sum = calcul.calculateNumber(12, 12);
-//     const sum_1 = calcul.calculateNumber(2.3, 2.3);
-//     assert.equal(sum, 24);
-//     assert.equal(sum_1, 4);
-//   });
-// });
